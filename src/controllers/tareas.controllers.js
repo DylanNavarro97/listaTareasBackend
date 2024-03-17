@@ -12,6 +12,18 @@ export const listarTareas = async (req, res) => {
     }
 }
 
+export const obtenerTarea = async (req, res) => {
+    try {
+        const tareaBuscada = await Tarea.findById(req.params.id)
+        res.status(200).json(tareaBuscada)
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({
+            mensaje: "No se encontro el producto solicitado"
+        })
+    }
+}
+
 export const crearTarea = async (req, res) => {
     try {
         const tareaNueva = new Tarea(req.body);
